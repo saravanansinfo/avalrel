@@ -24,6 +24,7 @@ import org.testng.asserts.SoftAssert;
 public class Avallainrele1 
 {
 	public WebDriver driver;
+	//afafaf
 	
 	
 	public WebDriverWait w;
