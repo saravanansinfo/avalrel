@@ -37,7 +37,7 @@ public class Avallainrele1
 		  
 		  //Object Repository
 		  Properties p = new Properties();
-		  FileInputStream fi = new FileInputStream ("F:\\RDPAutomation\\RDPautomtion\\src\\objres.properties");
+		  FileInputStream fi = new FileInputStream ("C:\\Users\\vrishin\\git\\repository2\\RDPautomtion\\src\\objres.properties");
 		  p.load(fi);
 		  
 		  //launching the url
@@ -59,8 +59,8 @@ public class Avallainrele1
 		  
 		//wait until the bell icon is visible
 		  
-		 // w = new WebDriverWait(driver,20);
-		//  w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tippyDropdownMenuButton\"]/i")));
+		  w = new WebDriverWait(driver,20);
+		  w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tippyDropdownMenuButton\"]/i")));
 		
 		 driver.findElement(By.xpath("/html/body/app/div[2]/teacher/dashboard/div[1]/div/main/div/div/div[2]/ul/li[2]")).click();
 	  }
@@ -75,6 +75,12 @@ public class Avallainrele1
 		  //click on My library
 		  //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		  System.out.println("2nd module");
+		  
+		  WebDriverWait w1 = new WebDriverWait(driver,10);
+		  
+		  w1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"bundleName1\"]")));
+		  
+		  
 		  driver.findElement(By.xpath("//*[@id=\"bundleName1\"]")).sendKeys(p.getProperty("bookname"));
 		  driver.findElement(By.xpath("//*[@id=\"bundleName1\"]")).sendKeys(Keys.DOWN);
 		  driver.findElement(By.xpath("//*[@id=\"bundleName1\"]")).sendKeys(Keys.DOWN);
