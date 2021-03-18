@@ -7,7 +7,6 @@
         <methods>
           <include name="dashboard"/>
           <include name="openactivity"/>
-          <include name="login"/>
           <include name="Activity2"/>
         </methods>
       </class> <!-- avallainrelease.Avallainrele1 -->
