@@ -31,9 +31,11 @@ public class Avallainrele1
 	public WebDriverWait w;
 	public String booklink="";
 	
-	Verifythescore v = new Verifythescore();
+	
 	int chk_correct_answers;
 	int sum=0;
+	String val;
+	int b;
 	
 	@Test(priority =1)
 	  public void login() throws InterruptedException, IOException 
@@ -163,7 +165,8 @@ public class Avallainrele1
 	     sum=sum+cnt.size();
 	     System.out.println("sum is:"+ sum);
 	     
-	     v.verifyscore();
+	     int c=verifyscore();
+	     System.out.println(c);
 	     
 	    /*score validation
 	     Activity_Pages ap = new Activity_Pages();
@@ -177,10 +180,28 @@ public class Avallainrele1
 	     driver.findElement(By.cssSelector("a[title='Next']")).click();//clicks next
 	     driver.findElement(By.cssSelector("a[class='nextActivityBtn btn']")).click();//clicks next
 		 
-	    
-	    
+	     
 		  
 	  }
+	  
+	  public int verifyscore()
+		{
+		driver.switchTo().frame("iframe_1612792865068-1612792877156-1612792901467");
+		val = driver.findElement(By.xpath("//div[@class='canvas-score-label']/strong")).getText();
+		driver.switchTo().defaultContent();
+		System.out.println("++++"+val);
+
+
+
+		b = Integer.valueOf(val);
+
+		if(chk_correct_answers==b)
+		{
+		System.out.println("Both Values are equal");
+		}
+
+		return b;
+		}
 	  
 	  @Test(priority =4)
 	  public void Activity2() throws InterruptedException, SikuliException
