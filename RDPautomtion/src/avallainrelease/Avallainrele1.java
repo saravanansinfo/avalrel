@@ -3,6 +3,7 @@ package avallainrelease;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +30,11 @@ public class Avallainrele1
 	
 	public WebDriverWait w;
 	public String booklink="";
+	
+	Verifythescore v = new Verifythescore();
+	int chk_correct_answers;
+	int sum=0;
+	
 	@Test(priority =1)
 	  public void login() throws InterruptedException, IOException 
 	  {
@@ -69,7 +75,7 @@ public class Avallainrele1
 	  {
 		
 		  Properties p = new Properties();
-		  FileInputStream fi = new FileInputStream ("F:\\RDPAutomation\\RDPautomtion\\src\\objres.properties");
+		  FileInputStream fi = new FileInputStream ("C:\\Users\\vrishin\\git\\repository2\\RDPautomtion\\src\\objres.properties");
 		  p.load(fi);
 		  
 		  //click on My library
@@ -118,13 +124,47 @@ public class Avallainrele1
 			 System.out.println("The activity progress bar is not in the first screen");
 		 }
 		 
+		 List<WebElement> ls = driver.findElements(By.xpath("//div[@class='place_holder']"));
+	     System.out.println(ls.size()); 
+		 
 		 driver.findElement(By.xpath("//*[@id=\"content-0\"]/div/div/div/div[1]/div/p[2]/span[1]/div/div[2]/div")).click();//clicks on empty box1
 	     driver.findElement(By.xpath("//*[@id=\"content-0\"]/div/div/div/div[2]/div/div[1]/div[2]/div/div")).click();//clicks first ans
 	     driver.findElement(By.xpath("//*[@id=\"content-0\"]/div/div/div/div[1]/div/p[3]/span[1]/div/div[2]/div")).click();//clicks on empty box2
 	     driver.findElement(By.xpath("//*[@id=\"content-0\"]/div/div/div/div[2]/div/div[2]/div[2]/div/div")).click();//Clicks second ans
 	     driver.switchTo().defaultContent();//switches back to default content
 	     driver.findElement(By.xpath("//a[@title='Check']")).click();//clicks check
-	     driver.findElement(By.cssSelector("a[title='Next']")).click();//clicks next
+	       
+	     
+	     
+	     //driver.findElement(By.cssSelector("a[title='Next']")).click();//clicks next
+	    
+	     //scoring check
+	     
+	     driver.switchTo().frame("iframe_1612792865068-1612792877156-1612792901467");
+	     List<WebElement> cnt = driver.findElements(By.xpath("//div[@class='check correct']"));
+	     chk_correct_answers=cnt.size();
+	     System.out.println("Total correcr answers are:"+chk_correct_answers );
+	     if(cnt.size()==(ls.size()))
+	     {
+	     System.out.println("All answer are correct");
+	     }
+	     else if(cnt.size()<=ls.size() && cnt.size()>0)
+	     {
+	     System.out.println("Some answers are incorrect");
+	     }
+	     else
+	     {
+	     System.out.println("All Incorrect");
+	     }
+
+	     driver.switchTo().defaultContent();
+
+	     driver.findElement(By.xpath("//a[@class='btn' and @title='Next']")).click();
+	     sum=sum+cnt.size();
+	     System.out.println("sum is:"+ sum);
+	     
+	     v.verifyscore();
+	     
 	    /*score validation
 	     Activity_Pages ap = new Activity_Pages();
 	     String result = ap.navi_units();
@@ -137,7 +177,8 @@ public class Avallainrele1
 	     driver.findElement(By.cssSelector("a[title='Next']")).click();//clicks next
 	     driver.findElement(By.cssSelector("a[class='nextActivityBtn btn']")).click();//clicks next
 		 
-	     
+	    
+	    
 		  
 	  }
 	  
