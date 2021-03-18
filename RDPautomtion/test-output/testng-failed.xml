@@ -5,7 +5,6 @@
     <classes>
       <class name="avallainrelease.Avallainrele1">
         <methods>
-          <include name="dashboard"/>
           <include name="openactivity"/>
           <include name="Activity2"/>
         </methods>
