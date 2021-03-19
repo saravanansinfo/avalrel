@@ -5,7 +5,7 @@
     <classes>
       <class name="avallainrelease.Avallainrele1">
         <methods>
-          <include name="openactivity"/>
+          <include name="Activity1"/>
           <include name="Activity2"/>
         </methods>
       </class> <!-- avallainrelease.Avallainrele1 -->
