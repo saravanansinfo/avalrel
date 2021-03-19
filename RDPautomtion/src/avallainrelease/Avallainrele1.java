@@ -82,7 +82,7 @@ public class Avallainrele1
 		  
 		  //click on My library
 		  //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		  System.out.println("2nd module");
+		  //System.out.println("2nd module");
 		  
 		  WebDriverWait w1 = new WebDriverWait(driver,10);
 		  
@@ -103,12 +103,15 @@ public class Avallainrele1
 	  }
 	  
 	  @Test(priority =3)
-	  public void openactivity() throws InterruptedException 
+	  public void Activity1() throws InterruptedException 
 	  {
 		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 System.out.println("module 3");
+		 //System.out.println("module 3");
 		 w = new WebDriverWait(driver,20);
 		 w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='brand-img']")));
+		 
+		 String title1=driver.findElement(By.cssSelector("a[class='open-sidebar open-sidebar-btn']")).getText();//gets text of LO
+	        System.out.println(title1);
 		 
 		 //switch to the frame
 		 
@@ -119,16 +122,40 @@ public class Avallainrele1
 		 boolean prog = driver.findElement(By.xpath("//*[@id=\"activity-header\"]/ul")).isDisplayed();
 		 if(prog==true)
 		 {
-			 System.out.println("The activity progress bar is in the first screen");
+			 System.out.println("The activity progress bar is in the first screen and at the top");
 		 }
 		 else
 		 {
 			 System.out.println("The activity progress bar is not in the first screen");
 		 }
 		 
-		 List<WebElement> ls = driver.findElements(By.xpath("//div[@class='place_holder']"));
-	     System.out.println(ls.size()); 
+		//validate rubric
 		 
+		 boolean rubric1 = driver.findElement(By.xpath("//*[@id='rubric-0']/div")).isDisplayed();
+		 String rubric2 = driver.findElement(By.xpath("//*[@id='rubric-0']/div")).getText();
+		 if(rubric1==true)
+		 {
+			 System.out.println("Rubric is present = " + rubric2);
+		 }
+		 else
+		 {
+			 System.out.println("Rubric is not present");
+		 }
+		 
+		 //checking whether scorable or non scorable LO
+		 
+		 boolean sco = driver.findElement(By.xpath("//*[@class='content-wrap at-draggable']")).isDisplayed();
+		 
+		 if(sco==true)
+		 {
+			 System.out.println("Activity is scorable");
+		 }
+		 else
+		 {
+			 System.out.println("Activity is non scroable");
+		 }
+		 
+		 //selecting the answer
 		 driver.findElement(By.xpath("//*[@id=\"content-0\"]/div/div/div/div[1]/div/p[2]/span[1]/div/div[2]/div")).click();//clicks on empty box1
 	     driver.findElement(By.xpath("//*[@id=\"content-0\"]/div/div/div/div[2]/div/div[1]/div[2]/div/div")).click();//clicks first ans
 	     driver.findElement(By.xpath("//*[@id=\"content-0\"]/div/div/div/div[1]/div/p[3]/span[1]/div/div[2]/div")).click();//clicks on empty box2
@@ -141,6 +168,9 @@ public class Avallainrele1
 	     //driver.findElement(By.cssSelector("a[title='Next']")).click();//clicks next
 	    
 	     //scoring check
+	     
+	     List<WebElement> ls = driver.findElements(By.xpath("//div[@class='place_holder']"));
+	     System.out.println(ls.size()); 
 	     
 	     driver.switchTo().frame("iframe_1612792865068-1612792877156-1612792901467");
 	     List<WebElement> cnt = driver.findElements(By.xpath("//div[@class='check correct']"));
