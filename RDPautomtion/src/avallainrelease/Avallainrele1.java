@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
@@ -102,7 +105,8 @@ public class Avallainrele1
 		  
 	  }
 	  
-	  @Test(priority =3)
+	  @SuppressWarnings("deprecation")
+	@Test(priority =3)
 	  public void Activity1() throws InterruptedException 
 	  {
 		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -130,6 +134,7 @@ public class Avallainrele1
 		 }
 		 
 		//validate rubric
+		// Wait<WebDriver> fw = new FluentWait<WebDriver>(driver).withTimeout(20, TimeUnit.SECONDS).pollingEvery(3, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
 		 
 		 boolean rubric1 = driver.findElement(By.xpath("//*[@id='rubric-0']/div")).isDisplayed();
 		 String rubric2 = driver.findElement(By.xpath("//*[@id='rubric-0']/div")).getText();
