@@ -208,7 +208,20 @@ public class Avallainrele1
 	     sa.assertEquals(result, 2, "Scored 2");*/
 	     driver.findElement(By.cssSelector("a[title='REVIEW']")).click();//clicks review
 	     driver.findElement(By.cssSelector("a[title='Next']")).click();//clicks next
-	     driver.findElement(By.cssSelector("a[class='nextActivityBtn btn']")).click();//clicks next
+	     
+	     //validating next activity button
+	     
+	     boolean nextact = driver.findElement(By.cssSelector("a[class='nextActivityBtn btn']")).isDisplayed();
+	     
+	     if(nextact==true)
+	     {
+	    	 System.out.println("Next activity button is present");
+	     }
+	     else
+	     {
+	    	 System.out.println("Next activity button is missing");
+	     }
+	     driver.findElement(By.cssSelector("a[class='nextActivityBtn btn']")).click();//clicks nextactivity
 		 
 	     
 		  
